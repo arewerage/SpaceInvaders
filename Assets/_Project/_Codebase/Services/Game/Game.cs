@@ -1,6 +1,6 @@
 ﻿using _Project._Codebase.Core.StateMachine;
 using _Project._Codebase.Services.Game.States;
-using VContainer.Unity;
+using Zenject;
 
 namespace _Project._Codebase.Services.Game
 {

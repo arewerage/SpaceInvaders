@@ -1,15 +1,14 @@
 ﻿using _Project._Codebase.Services.Input;
-using VContainer;
-using VContainer.Unity;
+using Zenject;
 
 namespace _Project._Codebase.CompositionRoot
 {
-    public class InputInstaller : IInstaller
+    public class InputInstaller : Installer<InputInstaller>
     {
-        public void Install(IContainerBuilder builder)
+        public override void InstallBindings()
         {
-            builder.Register<Controls>(Lifetime.Singleton);
-            builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces();
+            Container.Bind<Controls>().AsSingle();
+            Container.BindInterfacesTo<InputService>().AsSingle();
         }
     }
 }

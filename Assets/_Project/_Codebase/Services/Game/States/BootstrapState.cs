@@ -1,4 +1,4 @@
-﻿using _Project._Codebase.Core.AssetProvider;
+﻿using _Project._Codebase.Core.Assets.Provider;
 using Cysharp.Threading.Tasks;
 
 namespace _Project._Codebase.Services.Game.States

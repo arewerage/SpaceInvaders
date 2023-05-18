@@ -1,4 +1,5 @@
-﻿using _Project._Codebase.Core.SceneLoader;
+﻿using _Project._Codebase.Constants;
+using _Project._Codebase.Core.SceneLoader;
 using Cysharp.Threading.Tasks;
 
 namespace _Project._Codebase.Services.Game.States
@@ -19,7 +20,7 @@ namespace _Project._Codebase.Services.Game.States
 
         private async UniTaskVoid LoadAsync()
         {
-            await _sceneLoader.LoadAsync("MainMenu");
+            await _sceneLoader.LoadAsync(AssetAddress.MainMenuScene);
             
             Game.ChangeState<InitMainMenuState>();
         }

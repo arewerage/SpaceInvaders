@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using VContainer.Unity;
+using Zenject;
 
 namespace _Project._Codebase.Core.StateMachine
 {
