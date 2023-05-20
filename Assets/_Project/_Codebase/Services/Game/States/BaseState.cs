@@ -16,11 +16,11 @@ namespace _Project._Codebase.Services.Game.States
 
         public virtual void Exit() {}
 
-        public virtual void Tick() {}
+        public virtual void Tick(float deltaTime) {}
 
-        public virtual void FixedTick() {}
+        public virtual void FixedTick(float fixedDeltaTime) {}
         
-        public virtual void LateTick() {}
+        public virtual void LateTick(float deltaTime) {}
 
         public virtual void Restart() {}
     }

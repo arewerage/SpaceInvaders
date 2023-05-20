@@ -18,7 +18,19 @@ MonoBehaviour:
   m_GUID: 9fbf9b4c101937643a0c6f1ac5b0db20
   m_SerializeEntries:
   - m_GUID: 25b818c07889c024b9aebc51a4c75f2c
-    m_Address: Gameplay
+    m_Address: Game
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0b818c36b5440c94da3465ae3f74be2b
+    m_Address: HUDScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff898a661d77da74a99264332b42c51d
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3906719251efd0045b261aa37e2b286e
+    m_Address: Laser
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

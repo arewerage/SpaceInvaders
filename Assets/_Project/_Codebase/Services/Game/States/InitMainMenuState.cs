@@ -8,12 +8,12 @@ namespace _Project._Codebase.Services.Game.States
     public class InitMainMenuState : BaseState
     {
         private readonly IUIRootProvider _uiRootProvider;
-        private readonly IScreenService _screenService;
+        private readonly IUIScreenService _uiScreenService;
 
-        public InitMainMenuState(IUIRootProvider uiRootProvider, IScreenService screenService)
+        public InitMainMenuState(IUIRootProvider uiRootProvider, IUIScreenService uiScreenService)
         {
             _uiRootProvider = uiRootProvider;
-            _screenService = screenService;
+            _uiScreenService = uiScreenService;
         }
         
         public override void Enter()
@@ -24,7 +24,7 @@ namespace _Project._Codebase.Services.Game.States
         private async UniTaskVoid InitializeAsync()
         {
             await _uiRootProvider.InitializeAsync();
-            await _screenService.Show(ScreenId.MainMenu);
+            await _uiScreenService.Show(ScreenId.MainMenu);
         }
     }
 }

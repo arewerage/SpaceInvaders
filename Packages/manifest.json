@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "com.codewriter.morpeh.events": "https://github.com/codewriter-packages/Morpeh.Events.git",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.3.3",
+    "com.scellecs.morpeh": "https://github.com/scellecs/morpeh.git#2022.2.3",
     "com.unity.addressables": "1.19.19",
     "com.unity.collab-proxy": "2.0.4",
     "com.unity.feature.2d": "1.0.0",

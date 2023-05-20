@@ -9,21 +9,21 @@ namespace _Project._Codebase.UI.Elements.StartButton
     public class StartButtonController : IInitializable
     {
         private readonly Game _game;
-        private readonly StartButtonView _startButtonView;
+        private readonly StartButtonView _view;
 
-        public StartButtonController(Game game, StartButtonView startButtonView)
+        public StartButtonController(Game game, StartButtonView view)
         {
             _game = game;
-            _startButtonView = startButtonView;
+            _view = view;
         }
         
         public void Initialize()
         {
-            _startButtonView.Button
+            _view.Button
                 .OnClickAsObservable()
                 .ThrottleFirst(TimeSpan.FromSeconds(1))
-                .Subscribe(_ => _game.ChangeState<LoadGameplayState>())
-                .AddTo(_startButtonView);
+                .Subscribe(_ => _game.ChangeState<LoadLevelState>())
+                .AddTo(_view);
         }
     }
 }

@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 56e4c7149cadb7a47a31fd321a8171ff
   m_SerializeEntries:
-  - m_GUID: b2b1efd029b35e6408b99587318c1a7e
-    m_Address: MainMenuScreen
+  - m_GUID: e55567c6e0d1fd84c9a29cb4fef986dd
+    m_Address: UIRoot
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

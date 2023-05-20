@@ -32,6 +32,9 @@ namespace _Project._Codebase.Core.StateMachine
 
         public void AddState(TBaseState state)
         {
+            if (_states.ContainsKey(state.GetType()))
+                return;
+            
             _states.Add(state.GetType(), state);
         }
 

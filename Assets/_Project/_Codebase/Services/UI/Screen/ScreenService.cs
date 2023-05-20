@@ -8,12 +8,12 @@ using UnityEngine.AddressableAssets;
 
 namespace _Project._Codebase.Services.UI.Screen
 {
-    public class ScreenService : IScreenService
+    public class UIScreenService : IUIScreenService
     {
         private readonly IObjectFactory<IUIScreen, AssetReference> _objectFactory;
         private readonly Dictionary<ScreenId, Configs.Screen> _screenConfig;
 
-        public ScreenService(IObjectFactory<IUIScreen, AssetReference> objectFactory, ScreenConfig screenConfig)
+        public UIScreenService(IObjectFactory<IUIScreen, AssetReference> objectFactory, ScreenConfig screenConfig)
         {
             _objectFactory = objectFactory;
             _screenConfig = screenConfig.ScreenList.ToDictionary(x => x.ScreenId, x => x);

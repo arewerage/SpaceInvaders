@@ -1,5 +1,6 @@
 ﻿using _Project._Codebase.Core.StateMachine;
 using _Project._Codebase.Services.Game.States;
+using UnityEngine;
 using Zenject;
 
 namespace _Project._Codebase.Services.Game
@@ -20,17 +21,17 @@ namespace _Project._Codebase.Services.Game
 
         public void Tick()
         {
-            _stateMachine.CurrentState.Tick();
+            _stateMachine.CurrentState.Tick(Time.deltaTime);
         }
 
         public void FixedTick()
         {
-            _stateMachine.CurrentState.FixedTick();
+            _stateMachine.CurrentState.FixedTick(Time.fixedDeltaTime);
         }
 
         public void LateTick()
         {
-            _stateMachine.CurrentState.LateTick();
+            _stateMachine.CurrentState.LateTick(Time.deltaTime);
         }
 
         public void Restart()
