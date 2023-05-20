@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eeb16385f74b63999ce93c2b480361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameConfig: {fileID: 11400000, guid: 36e104ae8ee578449b259b10890f4178, type: 2}
+  _entitiesSpeedConfig: {fileID: 11400000, guid: d3a8bfcb022888c428493dae443563df, type: 2}
 --- !u!114 &68099827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +251,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
+  near clip plane: -1
   far clip plane: 10
   field of view: 60
   orthographic: 1
@@ -277,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894219201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

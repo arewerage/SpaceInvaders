@@ -1,4 +1,10 @@
 ﻿using System;
+using _Project._Codebase.ECS.Common;
+using _Project._Codebase.ECS.Enemy;
+using _Project._Codebase.ECS.Input;
+using _Project._Codebase.ECS.Laser;
+using _Project._Codebase.ECS.Physics;
+using _Project._Codebase.ECS.Player;
 using Scellecs.Morpeh;
 using Zenject;
 
@@ -24,13 +30,17 @@ namespace _Project._Codebase.ECS
             _world.UpdateByUnity = false;
             _systemsGroup = _world.CreateSystemsGroup();
             
-            // BindInitializer<PlayerInitSystem>();
-            //
-            // BindSystem<PlayerInputSystem>();
-            // BindSystem<CommonMovementSystem>();
-            // BindSystem<PlayerShootingSystem>();
-            // BindSystem<LaserSpawnSystem>();
-            // BindSystem<DestoryOnOffscreenSystem>();
+            BindInitializer<PlayerInitSystem>();
+            BindInitializer<EnemySpawnSystem>();
+            
+            BindSystem<GameplayInputSystem>();
+            BindSystem<PlayerVelocitySystem>();
+            BindSystem<PlayerShootingSystem>();
+            BindSystem<PlayerDestroySystem>();
+            BindSystem<EnemyDestroySystem>();
+            BindSystem<LaserSpawnSystem>();
+            BindSystem<PhysicsVelocitySystem>();
+            BindSystem<DestroyingOnOffscreenSystem>();
             
             _world.AddSystemsGroup(0, _systemsGroup);
         }

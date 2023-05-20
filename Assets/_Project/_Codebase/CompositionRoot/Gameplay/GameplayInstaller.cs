@@ -1,9 +1,9 @@
-﻿using _Project._Codebase.Core.Assets;
+﻿using _Project._Codebase.Configs;
+using _Project._Codebase.Core.Assets;
 using _Project._Codebase.Core.StateMachine;
-using _Project._Codebase.ECS._OLD.Laser;
-using _Project._Codebase.ECS._OLD.Player;
 using _Project._Codebase.Services.Game;
 using _Project._Codebase.Services.Game.States;
+using Scellecs.Morpeh.Providers;
 using UnityEngine;
 using Zenject;
 
@@ -11,16 +11,16 @@ namespace _Project._Codebase.CompositionRoot.Gameplay
 {
     public class GameplayInstaller : MonoInstaller
     {
+        [SerializeField] private GameConfig _gameConfig;
+        [SerializeField] private EntitiesSpeedConfig _entitiesSpeedConfig;
+        
         public override void InstallBindings()
         {
+            Container.BindInstance(_gameConfig).AsSingle();
+            Container.BindInstance(_entitiesSpeedConfig).AsSingle();
+            Container.BindInterfacesTo<AssetFactory<MonoBehaviour, RemoveEntityOnDestroy>>().AsSingle();
+            
             FactoryInstaller.Install(Container);
-
-            Container.BindInterfacesTo<AssetFactory<MonoBehaviour, LaserMarkerProvider>>()
-                .AsSingle().WhenInjectedInto<LaserSpawnSystem>();
-            
-            Container.BindInterfacesTo<AssetFactory<MonoBehaviour, PlayerMarkerProvider>>()
-                .AsSingle().WhenInjectedInto<PlayerInitSystem>();
-            
             ECSInstaller.Install(Container);
             
             InstallStateInjectorBindings();

@@ -9,5 +9,6 @@
 
         public const string Player = "Player";
         public const string Laser = "Laser";
+        public const string Enemy = "Enemy";
     }
 }
