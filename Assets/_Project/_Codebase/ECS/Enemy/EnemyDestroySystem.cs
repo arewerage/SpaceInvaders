@@ -1,7 +1,4 @@
-﻿using _Project._Codebase.ECS.Common;
-using _Project._Codebase.ECS.Laser;
-using _Project._Codebase.ECS.Physics;
-using _Project._Codebase.ECS.UnityRelated;
+﻿using _Project._Codebase.ECS.UnityRelated;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
@@ -14,47 +11,27 @@ namespace _Project._Codebase.ECS.Enemy
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     public sealed class EnemyDestroySystem : ISystem
     {
-        private Event<TriggerEnterEvent> _triggerEnterEvent;
+        private Event<EnemyDestroyEvent> _enemyDestroyEvent;
         private Stash<Rigidbody2dComponent> _rigidbodyStash;
-        private Stash<OwnerComponent> _ownerStash;
-        private Filter _enemies;
-        private Filter _damageableLasers;
 
         public World World { get; set; }
 
         public void OnAwake()
         {
-            _triggerEnterEvent = World.GetEvent<TriggerEnterEvent>();
+            _enemyDestroyEvent = World.GetEvent<EnemyDestroyEvent>();
             _rigidbodyStash = World.GetStash<Rigidbody2dComponent>();
-            _ownerStash = World.GetStash<OwnerComponent>();
-            _enemies = World.Filter.With<EnemyMarker>().With<Rigidbody2dComponent>();
-            _damageableLasers = World.Filter.With<LaserMarker>().With<OwnerComponent>()
-                .With<Rigidbody2dComponent>().Without<PickableComponent>();
         }
 
         public void OnUpdate(float deltaTime)
         {
-            if (_triggerEnterEvent.IsPublished == false)
+            if (_enemyDestroyEvent.IsPublished == false)
                 return;
-            
-            foreach (TriggerEnterEvent triggerEnterEvent in _triggerEnterEvent.BatchedChanges)
-            foreach (Entity enemy in _enemies)
-            foreach (Entity damageableLaser in _damageableLasers)
+
+            foreach (EnemyDestroyEvent enemyDestroyEvent in _enemyDestroyEvent.BatchedChanges)
             {
-                if (triggerEnterEvent.Target != enemy && triggerEnterEvent.Sender != damageableLaser)
-                    continue;
-
-                ref var owner = ref _ownerStash.Get(damageableLaser);
-
-                if (owner.Value == enemy)
-                    continue;
-
-                ref var enemyRigidbody = ref _rigidbodyStash.Get(enemy);
-                ref var laserRigidbody = ref _rigidbodyStash.Get(damageableLaser);
+                ref var rigidbody = ref _rigidbodyStash.Get(enemyDestroyEvent.Enemy);
                 
-                Object.Destroy(enemyRigidbody.Value.gameObject);
-                Object.Destroy(laserRigidbody.Value.gameObject);
-                return;
+                Object.Destroy(rigidbody.Value.gameObject);
             }
         }
 

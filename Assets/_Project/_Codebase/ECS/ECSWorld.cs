@@ -36,7 +36,9 @@ namespace _Project._Codebase.ECS
             BindSystem<GameplayInputSystem>();
             BindSystem<PlayerVelocitySystem>();
             BindSystem<PlayerShootingSystem>();
+            BindSystem<PlayerHitLaserSystem>();
             BindSystem<PlayerDestroySystem>();
+            BindSystem<EnemyHitLaserSystem>();
             BindSystem<EnemyDestroySystem>();
             BindSystem<LaserSpawnSystem>();
             BindSystem<PhysicsVelocitySystem>();

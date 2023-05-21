@@ -3,6 +3,7 @@ using _Project._Codebase.Constants;
 using _Project._Codebase.Core.Object;
 using _Project._Codebase.ECS.Common;
 using _Project._Codebase.ECS.Extensions;
+using _Project._Codebase.ECS.Physics;
 using _Project._Codebase.ECS.UnityRelated;
 using Cysharp.Threading.Tasks;
 using Unity.IL2CPP.CompilerServices;

@@ -1,4 +1,6 @@
-﻿using _Project._Codebase.ECS.Extensions;
+﻿using _Project._Codebase.ECS.Common;
+using _Project._Codebase.ECS.Extensions;
+using _Project._Codebase.ECS.Laser;
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Providers;
 using UnityEngine;
@@ -8,25 +10,27 @@ namespace _Project._Codebase.ECS.Physics
     [AddComponentMenu("ECS/" + nameof(TriggerEventSender))]
     public sealed class TriggerEventSenderProvider : MonoProvider<TriggerEventSender>
     {
-        private Entity _currentEntity;
-        private Event<TriggerEnterEvent> _triggerEnterEvent;
-
-        private void Awake()
-        {
-            _currentEntity = Entity;
-            _triggerEnterEvent = World.Default.GetEvent<TriggerEnterEvent>();
-        }
-
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.TryGetEntity(out Entity target) == false)
                 return;
-            
-            _triggerEnterEvent.NextFrame(new TriggerEnterEvent
+
+            ref OwnerComponent owner = ref Entity.GetComponent<OwnerComponent>(out bool isLaserOwned);
+
+            if (Entity is null)
+                return;
+
+            if (isLaserOwned)
             {
-                Sender = _currentEntity,
-                Target = target
-            });
+                Debug.Log("Good!");
+                if (owner.Value.ID.Equals(Entity.ID))
+                {
+                    Debug.Log("Amazing!");
+                    return;
+                }
+            }
+
+            target.SetComponent(new TriggeredComponent { By = Entity });
         }
     }
 }
