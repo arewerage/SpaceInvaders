@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7589950779349882057}
   - component: {fileID: 7589950779349882058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,10 @@ GameObject:
   - component: {fileID: 8601524019801003661}
   - component: {fileID: 9099041098265543166}
   - component: {fileID: 63187655438004804}
-  m_Layer: 0
+  - component: {fileID: 7950057886189738115}
+  - component: {fileID: -3419644941539236360}
+  - component: {fileID: -5142074438235364910}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,3 +211,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     Value: {fileID: 7589950779773026086}
+--- !u!114 &7950057886189738115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589950779773026083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b734a696b643c2a6f4862a639e3434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    Value: {fileID: 7589950779773026085}
+--- !u!114 &-3419644941539236360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589950779773026083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c2273f80074c3fa260ef11519edef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    LaserId: 0
+--- !u!114 &-5142074438235364910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589950779773026083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa9f5e91af7437aa781f0a170768cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    Value: {fileID: 7589950779349882058}

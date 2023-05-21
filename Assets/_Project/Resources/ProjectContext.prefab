@@ -75,3 +75,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _screenConfig: {fileID: 11400000, guid: 1bc5a143b373e4a4b9550c9c885dd8b7, type: 2}
+  _laserConfig: {fileID: 11400000, guid: 038aa56e50f58c94d971edefccf823d7, type: 2}

@@ -1,40 +1,54 @@
-﻿using _Project._Codebase.ECS.Common;
+﻿using _Project._Codebase.Configs;
+using _Project._Codebase.ECS.Common;
+using _Project._Codebase.ECS.Game;
+using _Project._Codebase.ECS.Pickable;
+using _Project._Codebase.ECS.UnityRelated;
+using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 namespace _Project._Codebase.ECS.Enemy
 {
-    using Scellecs.Morpeh;
-
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     public sealed class EnemyHitLaserSystem : ISystem
     {
-        private Event<EnemyDestroyEvent> _enemyDestroyEvent;
+        private Event<PickableLaserSpawnRequest> _pickableLaserSpawnRequest;
+        private Event<PlayerAddScoreEvent> _playerAddScoreEvent;
         private Stash<TriggeredComponent> _triggeredStash;
-        private Filter _enemy;
+        private Stash<Rigidbody2dComponent> _rigidbodyStash;
+        private Filter _enemies;
 
         public World World { get; set; }
 
         public void OnAwake()
         {
-            _enemyDestroyEvent = World.GetEvent<EnemyDestroyEvent>();
+            _pickableLaserSpawnRequest = World.GetEvent<PickableLaserSpawnRequest>();
+            _playerAddScoreEvent = World.GetEvent<PlayerAddScoreEvent>();
             _triggeredStash = World.GetStash<TriggeredComponent>();
-            _enemy = World.Filter.With<EnemyMarker>().With<TriggeredComponent>();
+            _rigidbodyStash = World.GetStash<Rigidbody2dComponent>();
+            _enemies = World.Filter.With<EnemyMarker>().With<Rigidbody2dComponent>()
+                .With<TriggeredComponent>().Without<DestroyComponent>();
         }
 
         public void OnUpdate(float deltaTime)
         {
-            foreach (Entity enemy in _enemy)
+            foreach (Entity enemy in _enemies)
             {
                 ref var triggered = ref _triggeredStash.Get(enemy);
-
-                if (triggered.By.Has<PickableComponent>())
-                    continue;
+                ref var rigidbody = ref _rigidbodyStash.Get(enemy);
                 
-                _enemyDestroyEvent.NextFrame(new EnemyDestroyEvent { Enemy = enemy });
+                if (triggered.By.Has<PickableMarker>())
+                    continue;
 
-                enemy.RemoveComponent<TriggeredComponent>();
+                _playerAddScoreEvent.NextFrame(new PlayerAddScoreEvent { Value = 1 });
+                
+                if (Random.Range(0f, 1f) > 0.8)
+                    _pickableLaserSpawnRequest.NextFrame(new PickableLaserSpawnRequest { Position = rigidbody.Value.position });
+                
+                enemy.AddComponent<DestroyComponent>();
+                triggered.By.AddComponent<DestroyComponent>();
             }
         }
 

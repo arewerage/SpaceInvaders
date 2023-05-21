@@ -9,6 +9,7 @@ namespace _Project._Codebase.Configs
         [SerializeField] private GridInfo _enemyGridInfo;
         
         public ReactiveProperty<int> PlayerScore { get; } = new(0);
+        public ReactiveProperty<int> CurrentWave { get; } = new(0);
         public GridInfo EnemyGridInfo => _enemyGridInfo;
     }
 

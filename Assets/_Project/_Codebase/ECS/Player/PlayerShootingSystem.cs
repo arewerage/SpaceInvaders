@@ -1,4 +1,5 @@
-﻿using _Project._Codebase.ECS.Input;
+﻿using _Project._Codebase.ECS.Common;
+using _Project._Codebase.ECS.Input;
 using _Project._Codebase.ECS.Laser;
 using _Project._Codebase.ECS.UnityRelated;
 using Unity.IL2CPP.CompilerServices;
@@ -15,6 +16,7 @@ namespace _Project._Codebase.ECS.Player
         private Event<LaserSpawnRequest> _laserSpawnRequest;
         private Stash<GameplayInputComponent> _gameplayInputStash;
         private Stash<Rigidbody2dComponent> _rigidbodyStash;
+        private Stash<LaserWeaponTypeComponent> _laserWeaponStash;
         private Filter _players;
         
         public World World { get; set; }
@@ -24,7 +26,9 @@ namespace _Project._Codebase.ECS.Player
             _laserSpawnRequest = World.GetEvent<LaserSpawnRequest>();
             _gameplayInputStash = World.GetStash<GameplayInputComponent>();
             _rigidbodyStash = World.GetStash<Rigidbody2dComponent>();
-            _players = World.Filter.With<PlayerMarker>().With<GameplayInputComponent>().With<Rigidbody2dComponent>();
+            _laserWeaponStash = World.GetStash<LaserWeaponTypeComponent>();
+            _players = World.Filter.With<PlayerMarker>().With<GameplayInputComponent>()
+                .With<Rigidbody2dComponent>().With<LaserWeaponTypeComponent>();
         }
 
         public void OnUpdate(float deltaTime)
@@ -33,6 +37,7 @@ namespace _Project._Codebase.ECS.Player
             {
                 ref var gameplayInput = ref _gameplayInputStash.Get(player);
                 ref var rigidbody = ref _rigidbodyStash.Get(player);
+                ref var laserWeaponType = ref _laserWeaponStash.Get(player);
 
                 if (gameplayInput.IsShooting == false)
                     return;
@@ -40,6 +45,7 @@ namespace _Project._Codebase.ECS.Player
                 _laserSpawnRequest.NextFrame(new LaserSpawnRequest
                 {
                     Owner = player,
+                    LaserId = laserWeaponType.LaserId,
                     Position = rigidbody.Value.position,
                     Angle = rigidbody.Value.rotation
                 });

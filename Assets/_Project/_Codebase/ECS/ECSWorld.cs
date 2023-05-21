@@ -1,9 +1,12 @@
 ﻿using System;
+using _Project._Codebase.ECS.Assets;
 using _Project._Codebase.ECS.Common;
 using _Project._Codebase.ECS.Enemy;
+using _Project._Codebase.ECS.Game;
 using _Project._Codebase.ECS.Input;
 using _Project._Codebase.ECS.Laser;
 using _Project._Codebase.ECS.Physics;
+using _Project._Codebase.ECS.Pickable;
 using _Project._Codebase.ECS.Player;
 using Scellecs.Morpeh;
 using Zenject;
@@ -30,19 +33,31 @@ namespace _Project._Codebase.ECS
             _world.UpdateByUnity = false;
             _systemsGroup = _world.CreateSystemsGroup();
             
-            BindInitializer<PlayerInitSystem>();
-            BindInitializer<EnemySpawnSystem>();
+            BindInitializer<AssetProviderSystem>();
             
-            BindSystem<GameplayInputSystem>();
+            BindSystem<GameplayInitializeSystem>();
+            
+            BindSystem<PlayerSpawnSystem>();
             BindSystem<PlayerVelocitySystem>();
             BindSystem<PlayerShootingSystem>();
             BindSystem<PlayerHitLaserSystem>();
-            BindSystem<PlayerDestroySystem>();
+            BindSystem<PlayerPickupLaserSystem>();
+            BindSystem<PlayerScoreSystem>();
+            
+            BindSystem<EnemyWaveSpawnSystem>();
+            BindSystem<EnemySpawnSystem>();
             BindSystem<EnemyHitLaserSystem>();
-            BindSystem<EnemyDestroySystem>();
+            
             BindSystem<LaserSpawnSystem>();
-            BindSystem<PhysicsVelocitySystem>();
-            BindSystem<DestroyingOnOffscreenSystem>();
+            BindSystem<PickableLaserSpawnSystem>();
+            
+            BindSystem<GameplayInputSystem>();
+            
+            BindSystem<PhysicsMovementSystem>();
+            BindSystem<PhysicsCollisionSystem>();
+            
+            BindSystem<OffscreenCheckSystem>();
+            BindSystem<DestroyEntitySystem>();
             
             _world.AddSystemsGroup(0, _systemsGroup);
         }

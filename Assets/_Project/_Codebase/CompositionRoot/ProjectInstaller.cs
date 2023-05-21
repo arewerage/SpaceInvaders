@@ -1,4 +1,5 @@
 using _Project._Codebase.Configs;
+using _Project._Codebase.Configs.Laser;
 using _Project._Codebase.Core.Assets.Provider;
 using _Project._Codebase.Core.SceneLoader;
 using _Project._Codebase.Core.StateMachine;
@@ -12,11 +13,13 @@ namespace _Project._Codebase.CompositionRoot
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private ScreenConfig _screenConfig;
+        [SerializeField] private LaserConfig _laserConfig;
         
         public override void InstallBindings()
         {
             InputInstaller.Install(Container);
             Container.BindInstance(_screenConfig);
+            Container.BindInstance(_laserConfig);
             Container.BindInterfacesTo<AssetProvider>().AsSingle();
             Container.BindInterfacesTo<SceneLoader>().AsSingle();
             

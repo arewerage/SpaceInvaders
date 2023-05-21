@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8491129202953424131}
   - component: {fileID: 8491129202953424128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,10 @@ GameObject:
   - component: {fileID: 7772264649623326535}
   - component: {fileID: 7116858027682633780}
   - component: {fileID: 2045229988268419982}
-  m_Layer: 0
+  - component: {fileID: -2857132025774292052}
+  - component: {fileID: -1539520913770124743}
+  - component: {fileID: -6926690623059531697}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,3 +211,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     Value: {fileID: 8491129203041019628}
+--- !u!114 &-2857132025774292052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491129203041019625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b734a696b643c2a6f4862a639e3434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    Value: {fileID: 8491129203041019631}
+--- !u!114 &-1539520913770124743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491129203041019625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c2273f80074c3fa260ef11519edef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    LaserId: 3
+--- !u!114 &-6926690623059531697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491129203041019625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa9f5e91af7437aa781f0a170768cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    Value: {fileID: 8491129202953424128}

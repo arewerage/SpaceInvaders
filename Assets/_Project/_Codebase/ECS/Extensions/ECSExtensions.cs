@@ -7,11 +7,11 @@ namespace _Project._Codebase.ECS.Extensions
 {
     public static class ECSExtensions
     {
-        public static bool TryGetEntity(this Component component, out Entity entity)
+        public static bool TryGetEntity(this GameObject gameObject, out Entity entity)
         {
-            if (EntityProvider.map.TryGetValue(component.gameObject.GetInstanceID(), out EntityProvider.MapItem instance) == false)
+            if (EntityProvider.map.TryGetValue(gameObject.GetInstanceID(), out EntityProvider.MapItem instance) == false)
             {
-                Debug.LogError($"The {component.gameObject} is not an Entity!");
+                Debug.LogError($"The {gameObject} is not an Entity!");
                 entity = null;
                 return false;
             }

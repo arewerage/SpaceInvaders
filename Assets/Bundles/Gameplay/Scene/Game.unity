@@ -169,7 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameConfig: {fileID: 11400000, guid: 36e104ae8ee578449b259b10890f4178, type: 2}
-  _entitiesSpeedConfig: {fileID: 11400000, guid: d3a8bfcb022888c428493dae443563df, type: 2}
+  _playerConfig: {fileID: 11400000, guid: d3a8bfcb022888c428493dae443563df, type: 2}
+  _enemyConfig: {fileID: 11400000, guid: ff55a004e4ec032458fa188f3251ed9d, type: 2}
 --- !u!114 &68099827
 MonoBehaviour:
   m_ObjectHideFlags: 0

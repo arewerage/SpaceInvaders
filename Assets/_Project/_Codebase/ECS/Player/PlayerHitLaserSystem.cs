@@ -1,6 +1,7 @@
 ﻿using _Project._Codebase.ECS.Common;
+using _Project._Codebase.ECS.Laser;
+using _Project._Codebase.ECS.Pickable;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
 namespace _Project._Codebase.ECS.Player
 {
@@ -11,34 +12,31 @@ namespace _Project._Codebase.ECS.Player
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     public sealed class PlayerHitLaserSystem : ISystem
     {
-        private Event<PlayerDestroyEvent> _playerDestroyEvent;
         private Stash<TriggeredComponent> _triggeredStash;
         private Filter _players;
+        private Filter _lasers;
 
         public World World { get; set; }
 
         public void OnAwake()
         {
-            _playerDestroyEvent = World.GetEvent<PlayerDestroyEvent>();
             _triggeredStash = World.GetStash<TriggeredComponent>();
-            _players = World.Filter.With<PlayerMarker>().With<TriggeredComponent>();
+            _players = World.Filter.With<PlayerMarker>().With<TriggeredComponent>().Without<DestroyComponent>();
+            _lasers = World.Filter.With<LaserMarker>().Without<PickableMarker>().Without<DestroyComponent>();
         }
 
         public void OnUpdate(float deltaTime)
         {
             foreach (Entity player in _players)
+            foreach (Entity laser in _lasers)
             {
                 ref var triggered = ref _triggeredStash.Get(player);
 
-                if (player == triggered.By)
+                if (laser.ID.Equals(triggered.By.ID) == false)
                     continue;
 
-                if (triggered.By.Has<PickableComponent>())
-                    continue;
-                
-                _playerDestroyEvent.NextFrame(new PlayerDestroyEvent { Player = player });
-
-                player.RemoveComponent<TriggeredComponent>();
+                player.AddComponent<DestroyComponent>();
+                laser.AddComponent<DestroyComponent>();
             }
         }
 
